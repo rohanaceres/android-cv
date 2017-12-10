@@ -1,3 +1,37 @@
 <resources>
-    <string name="app_name">mycv</string>
+    <string name="app_name">MyCv</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="edit_text_name">Seu nome</string>
+    <string name="edit_text_email">Seu email</string>
+    <string name="edit_text_district">Estado</string>
+    <string name="edit_text_city">Cidade</string>
+    <string name="edit_text_phone_number">Telefone</string>
+
+    <string name="button_next">Salvar e prosseguir</string>
+
+    <string name="label_text_school_degree">Formação</string>
+    <string name="edit_text_graduation">Graduação</string>
+    <string name="edit_text_mba">Pós</string>
+    <string name="edit_text_phd">Mestrado</string>
+
+    <string name="label_text_professional_experience">Experiência profissional</string>
+    <string name="edit_text_company_time">Duração</string>
+    <string name="edit_text_job_title">Cargo</string>
+    <string name="edit_text_company_name">Empresa</string>
+
+    <string name="label_text_courses">Curso</string>
+    <string name="edit_text_course_title">Nome do curso</string>
+    <string name="edit_text_institution">Instituicao</string>
+    <string name="edit_text_course_time">Tempo do curso</string>
+
+    <string name="label_text_publication">Publicações</string>
+    <string name="edit_text_publication_date">Data</string>
+    <string name="edit_text_publication_description">Descrição</string>
+
+    <string name="button_save">Salvar</string>
+
 </resources>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="rohanaceres.github.io.mycv.Main2Activity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15px"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textSchoolDegree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="@string/label_text_school_degree" />
+
+            <EditText
+                android:id="@+id/editTextGraduation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/edit_text_graduation"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editTextMba"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/edit_text_mba"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editTextPhd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/edit_text_phd"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textProfessionalExperience"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="@string/label_text_professional_experience" />
+
+            <EditText
+                android:id="@+id/editTextCompanyTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/edit_text_company_time"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/editTextCompanyName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/edit_text_company_name"
+                android:inputType="phone" />
+
+            <EditText
+                android:id="@+id/editTextJobTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/edit_text_job_title"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:id="@+id/textCourses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="@string/label_text_courses" />
+
+            <EditText
+                android:id="@+id/editTextCoursesTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/edit_text_course_title"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editTextInstitution"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/edit_text_institution"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editTextCourseTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/edit_text_course_time"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/textPublication"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="@string/label_text_publication" />
+
+            <EditText
+                android:id="@+id/editTextPublicationDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/edit_text_publication_date"
+                android:inputType="date" />
+
+            <EditText
+                android:id="@+id/editTextPublicationDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/edit_text_publication_description"
+                android:inputType="textMultiLine" />
+
+            <Button
+                android:id="@+id/buttonSave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="save"
+                android:text="@string/button_save" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>
