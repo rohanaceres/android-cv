@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun nextForm(view: View) {
-        val intent = Intent(this, Main2Activity::class.java)
+        val intent = Intent(this, MainActivity2::class.java)
         val nome = findViewById<EditText>(R.id.editTextNome)
         val email = findViewById<EditText>(R.id.editTextEmail)
         val estado = findViewById<EditText>(R.id.editTextEstado)
@@ -23,11 +23,11 @@ class MainActivity : AppCompatActivity() {
 
         if (!(nome.text.toString() == "" || email.text.toString() == "" || estado.text.toString() == "" || cidade.text.toString() == "" || telefone.text.toString() == "")) {
             val data = PersonalData.getInstance()
-            data.name = nome.getText().toString()
-            data.email = email.getText().toString()
-            data.district  = estado.getText().toString()
-            data.city  = cidade.getText().toString()
-            data.phoneNumber = telefone.getText().toString()
+            data.name = nome.text.toString()
+            data.email = email.text.toString()
+            data.district  = estado.text.toString()
+            data.city  = cidade.text.toString()
+            data.phoneNumber = telefone.text.toString()
 
             startActivity(intent)
         }
