@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.content.Intent
+import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.NavigationView
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
@@ -14,7 +15,7 @@ import android.view.MenuItem
 import android.widget.EditText
 import android.widget.TextView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity()  {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +30,22 @@ class MainActivity : AppCompatActivity() {
         toggle.syncState()
 
         val navigationView = findViewById<NavigationView>(R.id.nav_view)
-        navigationView.setNavigationItemSelectedListener(onNavigationItemSelected)
+        navigationView.setNavigationItemSelectedListener({
+            item ->
+                // Handle navigation view item clicks here.
+                val id = item.itemId
+
+                if (id == R.id.personalInfo) {
+                    val intent = Intent(this, MainActivity3::class.java)
+                    startActivity(intent)
+                } else if (id == R.id.other) {
+                    // TODO
+                }
+
+                val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
+                drawer.closeDrawer(GravityCompat.START)
+                true
+        })
 
         val data = PersonalData.getInstance()
         val nome = findViewById<EditText>(R.id.editTextNome)
