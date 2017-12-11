@@ -15,11 +15,12 @@ import android.view.MenuItem
 import android.widget.EditText
 import android.widget.TextView
 
-class MainActivity : AppCompatActivity()  {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener  {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
@@ -30,22 +31,7 @@ class MainActivity : AppCompatActivity()  {
         toggle.syncState()
 
         val navigationView = findViewById<NavigationView>(R.id.nav_view)
-        navigationView.setNavigationItemSelectedListener({
-            item ->
-                // Handle navigation view item clicks here.
-                val id = item.itemId
-
-                if (id == R.id.personalInfo) {
-                    val intent = Intent(this, MainActivity3::class.java)
-                    startActivity(intent)
-                } else if (id == R.id.other) {
-                    // TODO
-                }
-
-                val drawer = findViewById<DrawerLayout>(R.id.drawer_layout)
-                drawer.closeDrawer(GravityCompat.START)
-                true
-        })
+        navigationView.setNavigationItemSelectedListener(this)
 
         val data = PersonalData.getInstance()
         val nome = findViewById<EditText>(R.id.editTextNome)
@@ -87,7 +73,7 @@ class MainActivity : AppCompatActivity()  {
         return super.onOptionsItemSelected(item)
     }
 
-    fun onNavigationItemSelected(item: MenuItem): Boolean {
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         val id = item.itemId
 
