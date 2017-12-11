@@ -98,6 +98,15 @@ class MainActivity2 : AppCompatActivity() {
             data.publicationDate = publicacaoData.text.toString()
             data.publicationTitle = publicacaoDescricao.text.toString()
 
+            val personalDataDao = PersonalDataDao(baseContext)
+            var success: Boolean = personalDataDao.save()
+
+            if (success) {
+                Toast.makeText(getApplicationContext(), "Salvou!", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(getApplicationContext(), "Falhou!", Toast.LENGTH_LONG).show()
+            }
+
             startActivity(intent)
         }
     }
