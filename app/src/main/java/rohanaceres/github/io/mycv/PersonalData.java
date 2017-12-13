@@ -2,8 +2,6 @@ package rohanaceres.github.io.mycv;
 
 public class PersonalData {
 
-    private static final PersonalData Instance = new PersonalData();
-
     private String name;
     private String email;
     private String district;
@@ -22,11 +20,7 @@ public class PersonalData {
     private String publicationTitle;
 
     // singleton
-    private PersonalData() {}
-
-    public static PersonalData getInstance() {
-        return Instance;
-    }
+    public PersonalData() {}
 
     // getters and setters
     public String getName() {

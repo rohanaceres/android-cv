@@ -17,7 +17,7 @@ public class DbGateway {
     }
 
     public static DbGateway getInstance(Context ctx) {
-        if (gw == null) {
+        if (gw == null && ctx != null) {
             gw = new DbGateway(ctx);
         }
 
@@ -26,4 +26,6 @@ public class DbGateway {
     public SQLiteDatabase getDatabase() {
         return db;
     }
+
+
 }

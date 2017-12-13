@@ -14,7 +14,7 @@ class MainActivity3 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main3)
 
-        val data = PersonalData.getInstance()
+        val data = CrudBoladao.getLastRow(getApplicationContext())
 
         val nome = findViewById<TextView>(R.id.textViewNome)
         val email = findViewById<TextView>(R.id.textViewEmail)

@@ -1,19 +1,26 @@
 package rohanaceres.github.io.mycv
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.EditText
 import android.content.Intent
 import android.view.View
 import android.widget.Toast
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
+
+
 
 class MainActivity2 : AppCompatActivity() {
+
+    val personalData : PersonalData = PersonalData()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
 
-        val data = PersonalData.getInstance()
+        val data = CrudBoladao.getLastRow(getApplicationContext())
 
         val graducao = findViewById<EditText>(R.id.editTextGraduation)
         graducao.setText(data.graduation)
@@ -50,8 +57,6 @@ class MainActivity2 : AppCompatActivity() {
     }
 
     fun save(view: View) {
-        Toast.makeText(getApplicationContext(), "TESTANDO1", Toast.LENGTH_SHORT)
-
         val intent = Intent(this, MainActivity::class.java)
 
         val graducao = findViewById<EditText>(R.id.editTextGraduation)
@@ -69,8 +74,6 @@ class MainActivity2 : AppCompatActivity() {
         val publicacaoData = findViewById<EditText>(R.id.editTextPublicationDate)
         val publicacaoDescricao = findViewById<EditText>(R.id.editTextPublicationDescription)
 
-        Toast.makeText(getApplicationContext(), "TESTANDO2", Toast.LENGTH_SHORT)
-
         if (!(graducao.text.toString() == "" ||
                 pos.text.toString() == "" ||
                 mestrado.text.toString() == "" ||
@@ -84,22 +87,28 @@ class MainActivity2 : AppCompatActivity() {
                 publicacaoData.text.toString() == "" ||
                 publicacaoDescricao.text.toString() == "")) {
 
-            val data = PersonalData.getInstance()
+            personalData.graduation = graducao.text.toString()
+            personalData.mba = pos.text.toString()
+            personalData.phd = mestrado.text.toString()
+            personalData.companyTime = tempoDeEmpresa.text.toString()
+            personalData.companyName = empresa.text.toString()
+            personalData.jobTitle = cargo.text.toString()
+            personalData.courseTitle = curso.text.toString()
+            personalData.institution = instituicao.text.toString()
+            personalData.courseTime = tempoCurso.text.toString()
+            personalData.publicationDate = publicacaoData.text.toString()
+            personalData.publicationTitle = publicacaoDescricao.text.toString()
 
-            data.graduation = graducao.text.toString()
-            data.mba = pos.text.toString()
-            data.phd = mestrado.text.toString()
-            data.companyTime = tempoDeEmpresa.text.toString()
-            data.companyName = empresa.text.toString()
-            data.jobTitle = cargo.text.toString()
-            data.courseTitle = curso.text.toString()
-            data.institution = instituicao.text.toString()
-            data.courseTime = tempoCurso.text.toString()
-            data.publicationDate = publicacaoData.text.toString()
-            data.publicationTitle = publicacaoDescricao.text.toString()
+            val sharedPref = getSharedPreferences("personalData", Context.MODE_PRIVATE)
+
+            personalData.name = sharedPref.getString("name", "")
+            personalData.email = sharedPref.getString("email", "")
+            personalData.district = sharedPref.getString("district", "")
+            personalData.city = sharedPref.getString("city", "")
+            personalData.phoneNumber = sharedPref.getString("phoneNumber", "")
 
             val personalDataDao = PersonalDataDao(baseContext)
-            var success: Boolean = personalDataDao.save()
+            var success = personalDataDao.save(personalData)
 
             if (success) {
                 Toast.makeText(getApplicationContext(), "Salvou!", Toast.LENGTH_LONG).show()

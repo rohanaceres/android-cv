@@ -15,10 +15,9 @@ class PersonalDataDao {
         gw = DbGateway.getInstance(context)
     }
 
+    fun save(data : PersonalData) : Boolean {
+        var cv = ContentValues()
 
-    fun save() : Boolean {
-        val data = PersonalData.getInstance()
-        var cv : ContentValues = ContentValues()
         cv.put("name", data.name)
         cv.put("email", data.email)
         cv.put("district", data.district)
@@ -35,7 +34,6 @@ class PersonalDataDao {
         cv.put("courseTime", data.courseTime)
         cv.put("publicationDate", data.publicationDate)
         cv.put("publicationTitle", data.publicationTitle)
-
 
         return gw.database.insert(TableUsers, null, cv) > 0
     }

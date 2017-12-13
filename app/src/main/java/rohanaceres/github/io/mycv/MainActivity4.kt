@@ -13,7 +13,7 @@ class MainActivity4 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main4)
 
-        val data = PersonalData.getInstance()
+        val data = CrudBoladao.getLastRow(getApplicationContext())
 
         val graducao = findViewById<EditText>(R.id.editTextGraduation)
         graducao.setText(data.graduation)
