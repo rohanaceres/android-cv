@@ -17,7 +17,7 @@ import android.R.id.edit
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.Context.MODE_PRIVATE
-
+import com.google.android.gms.ads.MobileAds
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener  {
@@ -50,6 +50,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         estado.setText(data.district)
         cidade.setText(data.city)
         telefone.setText(data.phoneNumber)
+
+        MobileAds.initialize(this, "ca-app-pub-9324256093642544~0987645453");
     }
 
     override fun onBackPressed() {
