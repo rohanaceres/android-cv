@@ -1,5 +1,7 @@
 package rohanaceres.github.io.mycv
 
+import android.app.Notification
+import android.app.NotificationChannel
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -7,14 +9,15 @@ import android.widget.EditText
 import android.content.Intent
 import android.view.View
 import android.widget.Toast
-import android.content.Context.MODE_PRIVATE
-import android.content.SharedPreferences
-
-
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.graphics.Color
+import android.support.v4.app.NotificationCompat
 
 class MainActivity2 : AppCompatActivity() {
 
     val personalData : PersonalData = PersonalData()
+    private var notificationManager: NotificationManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +57,30 @@ class MainActivity2 : AppCompatActivity() {
 
         val publicacaoDescricao = findViewById<EditText>(R.id.editTextPublicationDescription)
         publicacaoDescricao.setText(data.publicationTitle)
+
+        notificationManager =
+                getSystemService(
+                        Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        createNotificationChannel(
+                "com.ebookfrenzy.notifydemo.news",
+                "NotifyDemo News",
+                "Example News Channel")
+    }
+
+    private fun createNotificationChannel(id: String, name: String,
+                                          description: String) {
+
+        val importance = NotificationManager.IMPORTANCE_LOW
+        val channel = NotificationChannel(id, name, importance)
+
+        channel.description = description
+        channel.enableLights(true)
+        channel.lightColor = Color.RED
+        channel.enableVibration(true)
+        channel.vibrationPattern =
+                longArrayOf(100, 200, 300, 400, 500, 400, 300, 200, 400)
+        notificationManager?.createNotificationChannel(channel)
     }
 
     fun save(view: View) {
@@ -111,9 +138,26 @@ class MainActivity2 : AppCompatActivity() {
             var success = personalDataDao.save(personalData)
 
             if (success) {
-                Toast.makeText(getApplicationContext(), "Salvou!", Toast.LENGTH_LONG).show()
+                Toast.makeText(getApplicationContext(), "Usuário cadastrado!", Toast.LENGTH_LONG).show()
+
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+
+                val pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+                        PendingIntent.FLAG_ONE_SHOT)
+
+                val n = NotificationCompat.Builder(this@MainActivity2, "com.ebookfrenzy.notifydemo.news")
+                        .setContentTitle("Novo usuário cadastrado")
+                        .setContentText(personalData.name)
+                        .setAutoCancel(true)
+                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setContentIntent(pendingIntent)
+
+                val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+                notificationManager.notify(0, n.build())
+
             } else {
-                Toast.makeText(getApplicationContext(), "Falhou!", Toast.LENGTH_LONG).show()
+                Toast.makeText(getApplicationContext(), "Cadastro falhou!", Toast.LENGTH_LONG).show()
             }
 
             startActivity(intent)

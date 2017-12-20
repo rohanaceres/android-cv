@@ -37,7 +37,7 @@ public class MainActivity3 extends AppCompatActivity {
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT);
             params.setMargins(15,15,15,15);
-            
+
             newCv.setLayoutParams(params);
             newCv.setRadius(9);
             newCv.setContentPadding(15, 15, 15, 15);
