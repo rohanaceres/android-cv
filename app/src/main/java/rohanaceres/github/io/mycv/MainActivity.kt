@@ -17,7 +17,13 @@ import android.R.id.edit
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.Context.MODE_PRIVATE
+import android.location.Address
+import android.location.Geocoder
+import android.widget.Toast
 import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.maps.model.LatLng
+import kotlinx.android.synthetic.main.content_main.view.*
+import java.io.IOException
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener  {
@@ -130,5 +136,54 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         // String	message	= mMessageEditText.getText().toString();
         // intent.putExtra(EXTRA_MESSAGE,	message);
+    }
+
+    fun showMaps(view: View)
+    {
+        val intent = Intent(this, MapsActivity::class.java)
+
+        val district = findViewById<EditText>(R.id.editTextEstado)
+
+        try {
+            val latLng = getLocationFromAddress(applicationContext, district.text.toString())
+
+            val sharedPref = getSharedPreferences("latLng", Context.MODE_PRIVATE)
+            val editor = sharedPref.edit()
+
+            editor.putString("lat", latLng?.latitude.toString())
+            editor.putString("lng", latLng?.longitude.toString())
+            editor.commit()
+
+            startActivity(intent)
+        }
+        catch (ex: Exception) {
+            Toast.makeText(getApplicationContext(), "ENDEREÇO INVALIDO", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    fun getLocationFromAddress(context: Context, strAddress: String): LatLng? {
+
+        val coder = Geocoder(context)
+        val address: List<Address>?
+        var p1: LatLng? = null
+
+        try {
+            // May throw an IOException
+            address = coder.getFromLocationName(strAddress, 5)
+            if (address == null) {
+                return null
+            }
+            val location = address[0]
+            location.latitude
+            location.longitude
+
+            p1 = LatLng(location.latitude, location.longitude)
+
+        } catch (ex: IOException) {
+
+            ex.printStackTrace()
+        }
+
+        return p1
     }
 }
